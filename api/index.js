@@ -13,6 +13,8 @@ app.use(
 
 const PORT = process.env.PORT || 8080;
 
+
+
 //database connection
 async function connectToDatabase() {
   try {
@@ -26,6 +28,7 @@ async function connectToDatabase() {
 
 
 
+//create clients
 
 app.post("/createClinent", async (req, res) => {
   const { name, email, project, lastName, mobNo } = req.body;
@@ -47,11 +50,61 @@ app.post("/createClinent", async (req, res) => {
 
 });
 
+//Show Clients
+
 app.get("/", async (req, res) => {
     res.json(await User.find({ }));
 
 })
 
+//update Clients
+app.put("/updateClient/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, email, project, lastName, mobNo } = req.body;
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      {
+        name,
+        email,
+        project,
+        lastName,
+        mobNo,
+      },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+
+//delet client
+app.delete("/deleteClient/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedUser = await User.findByIdAndDelete(id);
+
+    if (!deletedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
 connectToDatabase().then(() => {
   const server = app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

@@ -3,9 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme:  dark;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #f7f1f1;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,19 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -36,33 +25,131 @@ h1 {
 }
 
 button {
+  margin-top: 9px;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #0b1bf5;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+
+input {
+  display: inline-flex;
+  background-color: #f9f9f9;
+  color: #03040f;
+  font-style: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 25px;
+  width: 25vw;
 }
+
+header {
+  background-color: #03040f;
+  color: #f9f9f9;
+  width: 100%;
+  height: 8vh;
+  margin-bottom: 0;
+  text-align: start;
+  font-size: large;
+  display: flex;
+  align-items: center; /* Center items vertically */
+  padding-left: 2%; /* Adjust as needed */
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.createform {
+  flex: 0 0 100%; /* Take full width on smaller screens */
+  max-width: 100%; /* Allow the form to take full width */
+  padding: 20px;
+}
+
+.clientlist {
+  flex: 0 0 calc(50% - 20px); /* Take up half of the width minus spacing */
+  max-width: calc(50% - 20px); /* Limit the max width */
+  padding: 20px;
+}
+
+.clientlist-content {
+  overflow-x: auto;
+}
+
+.clientlist-item {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex: 1;
+  padding: 0 5px;
+}
+
+.column-heading {
+  display: block;
+  background-color: gray;
+  color: white;
+  padding: 5px;
+  font-weight: bold;
+  margin-bottom: -1px;
+}
+
+.data-row {
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+}
+
+.data-row:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 768px) {
+  .createform {
+    flex: 0 0 calc(45% - 20px); /* Take up 45% of the width minus spacing */
+    max-width: calc(45% - 20px); /* Limit the max width */
+    margin-left: 20px; /* Add spacing between the form and the list */
+  }
+
+  .clientlist {
+    flex: 0 0 calc(55% - 20px); /* Take up 55% of the width minus spacing */
+    max-width: calc(55% - 20px); /* Limit the max width */
+  }
+}
+
+
+
+nav {
+  font-size: large;
+  margin-left: 2%;
+  font-weight: 600;
+}
+
+button:hover {
+  border-color: #03040f;
+}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media (min-width: 768px) {
+  .container {
+    display: flex;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+
+  .clientlist,
+  .createform {
+    flex: 1; /* Each take half of the available space */
   }
 }

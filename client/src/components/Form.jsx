@@ -27,7 +27,8 @@ export default function Form() {
   }
 
   return (
-    <div>
+    <div className="createform">
+      <h2>Create Client</h2>
       <form onSubmit={handleSubmit}>
         <h3>Name</h3>
         <input
