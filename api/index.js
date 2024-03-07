@@ -44,7 +44,7 @@ app.post("/createClinent", async (req, res) => {
 
     res.json(userDoc);
   }  catch (e) {
-  console.error("Error registering user:", e);
+  // console.error("Error registering user:", e);
   res.status(500).json({ error: e.message });
 }
 
@@ -81,7 +81,7 @@ app.put("/updateClient/:id", async (req, res) => {
 
     res.json(updatedUser);
   } catch (error) {
-    console.error("Error updating user:", error);
+    // console.error("Error updating user:", error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -101,7 +101,7 @@ app.delete("/deleteClient/:id", async (req, res) => {
 
     res.json({ message: "User deleted successfully" });
   } catch (error) {
-    console.error("Error deleting user:", error);
+    // console.error("Error deleting user:", error);
     res.status(500).json({ error: error.message });
   }
 });

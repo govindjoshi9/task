@@ -14,20 +14,27 @@ export default function UserList() {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:8080/").then(({ data }) => {
-      setUsers(data);
-    });
+    fetchUsers();
   }, []);
+
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/");
+      setUsers(response.data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
 
   const deleteUser = async (id) => {
     try {
       await axios.delete(`http://localhost:8080/deleteClient/${id}`);
-      setUsers(users.filter((user) => user._id !== id)); // Remove the deleted user from the state
+      setUsers(users.filter((user) => user._id !== id));
     } catch (error) {
       console.error("Error deleting user:", error);
-      // Handle error, e.g., show error message to the user
     }
   };
+
   const editUser = (user) => {
     setSelectedUser(user);
     setFormData({
@@ -39,7 +46,6 @@ export default function UserList() {
     });
   };
 
-  // Function to update user data
   const updateUser = async () => {
     try {
       const { _id } = selectedUser;
@@ -47,18 +53,15 @@ export default function UserList() {
         `http://localhost:8080/updateClient/${_id}`,
         formData
       );
-      console.log("Updated user:", response.data);
-      // Update the user list with the updated user data
       setUsers(users.map((user) => (user._id === _id ? response.data : user)));
     } catch (error) {
       console.error("Error updating user:", error);
-      // Handle error
     }
   };
 
   return (
-    <div className="clientlist">
-      <h3>Clients</h3>
+    <div className="user-list">
+      <h3 className="clients-heading">Clients</h3>
       <div className="clientlist-content">
         <div className="clientlist-item">
           <div className="column">
@@ -72,7 +75,7 @@ export default function UserList() {
           <div className="column">
             <span className="column-heading">Last Name</span>
             {users.map((user) => (
-              <div key={users._id} className="data-row">
+              <div key={user._id} className="data-row">
                 {user.lastName}
               </div>
             ))}
@@ -80,7 +83,7 @@ export default function UserList() {
           <div className="column">
             <span className="column-heading">Email</span>
             {users.map((user) => (
-              <div key={users._id} className="data-row">
+              <div key={user._id} className="data-row">
                 {user.email}
               </div>
             ))}
@@ -88,7 +91,7 @@ export default function UserList() {
           <div className="column">
             <span className="column-heading">Mobile No.</span>
             {users.map((user) => (
-              <div key={users._id} className="data-row">
+              <div key={user._id} className="data-row">
                 {user.mobNo}
               </div>
             ))}
@@ -96,17 +99,24 @@ export default function UserList() {
           <div className="column">
             <span className="column-heading">Project</span>
             {users.map((user) => (
-              <div key={users._id} className="data-row">
+              <div key={user._id} className="data-row">
                 {user.project}
               </div>
             ))}
           </div>
-          <div className="column">
-            <span className="column-heading">Actions</span>
+          <div className="column actions-column">
+            {/* <span className="column-heading">Actions</span> */}
             {users.map((user) => (
               <div key={user._id} className="data-row">
-                <button onClick={() => editUser(user)}>Edit</button>
-                <button onClick={() => deleteUser(user._id)}>Delete</button>
+                <button className="edit-button" onClick={() => editUser(user)}>
+                  Edit
+                </button>
+                <button
+                  className="delete-button"
+                  onClick={() => deleteUser(user._id)}
+                >
+                  Delete
+                </button>
               </div>
             ))}
           </div>
@@ -123,24 +133,31 @@ export default function UserList() {
           <input
             type="text"
             value={formData.lastName}
-            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, lastName: e.target.value })
+            }
           />
           <input
             type="text"
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
           />
           <input
             type="text"
             value={formData.mobNo}
-            onChange={(e) => setFormData({ ...formData, mobNo: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, mobNo: e.target.value })
+            }
           />
           <input
             type="text"
             value={formData.project}
-            onChange={(e) => setFormData({ ...formData, project: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, project: e.target.value })
+            }
           />
-          {/* Render form fields for editing user data */}
           <button onClick={updateUser}>Update</button>
         </div>
       )}
