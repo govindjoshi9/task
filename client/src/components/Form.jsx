@@ -11,7 +11,7 @@ export default function Form() {
   async function handleSubmit(ev) {
     ev.preventDefault(); // Prevent the default form submission behavior
     try {
-      const response = await axios.post("http://localhost:8080/createClinent", {
+      const response = await axios.post("/createClinent", {
         name,
         lastName,
         email,

@@ -19,7 +19,7 @@ export default function UserList() {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/");
+      const response = await axios.get("/");
       setUsers(response.data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -28,7 +28,7 @@ export default function UserList() {
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/deleteClient/${id}`);
+      await axios.delete(`/deleteClient/${id}`);
       setUsers(users.filter((user) => user._id !== id));
     } catch (error) {
       console.error("Error deleting user:", error);
@@ -50,7 +50,7 @@ export default function UserList() {
     try {
       const { _id } = selectedUser;
       const response = await axios.put(
-        `http://localhost:8080/updateClient/${_id}`,
+        `/updateClient/${_id}`,
         formData
       );
       setUsers(users.map((user) => (user._id === _id ? response.data : user)));
