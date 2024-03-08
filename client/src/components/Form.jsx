@@ -9,7 +9,7 @@ export default function Form() {
   const [project, setProject] = useState("");
 
   async function handleSubmit(ev) {
-    ev.preventDefault();
+    ev.preventDefault(); // Prevent the default form submission behavior
     try {
       const response = await axios.post("http://localhost:8080/createClinent", {
         name,
@@ -20,6 +20,12 @@ export default function Form() {
       });
       console.log(response.data);
       alert("Client created successfully!");
+      setName("");
+      setLastName("");
+      setEmail("");
+      setMobNo("");
+      setProject("");
+      window.location.reload();
     } catch (error) {
       console.error("Error creating client:", error);
       alert("Failed to create client. Please try again later.");
@@ -30,7 +36,7 @@ export default function Form() {
     <div className="createform">
       <h2>Create Client</h2>
       <form onSubmit={handleSubmit}>
-        <h3>Name</h3>
+        <h4>Name</h4>
         <input
           type="text"
           name="name"

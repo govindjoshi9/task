@@ -60,8 +60,8 @@ header {
   text-align: start;
   font-size: large;
   display: flex;
-  align-items: center; /* Center items vertically */
-  padding-left: 2%; /* Adjust as needed */
+  align-items: center; 
+  padding-left: 2%; 
 }
 
 .container {
@@ -70,14 +70,14 @@ header {
 }
 
 .createform {
-  flex: 0 0 100%; /* Take full width on smaller screens */
-  max-width: 100%; /* Allow the form to take full width */
+  flex: 0 0 100%; 
+  max-width: 100%; 
   padding: 20px;
 }
 
 .clientlist {
-  flex: 0 0 calc(50% - 20px); /* Take up half of the width minus spacing */
-  max-width: calc(50% - 20px); /* Limit the max width */
+  flex: 0 0 calc(50% - 20px);
+  max-width: calc(50% - 20px); 
   padding: 20px;
 }
 
@@ -115,14 +115,14 @@ header {
 
 @media (min-width: 768px) {
   .createform {
-    flex: 0 0 calc(45% - 20px); /* Take up 45% of the width minus spacing */
-    max-width: calc(45% - 20px); /* Limit the max width */
-    margin-left: 20px; /* Add spacing between the form and the list */
+    flex: 0 0 calc(45% - 20px); 
+    max-width: calc(45% - 20px); 
+    margin-left: 20px; 
   }
 
   .clientlist {
-    flex: 0 0 calc(55% - 20px); /* Take up 55% of the width minus spacing */
-    max-width: calc(55% - 20px); /* Limit the max width */
+    flex: 0 0 calc(55% - 20px); 
+    max-width: calc(55% - 20px); 
   }
 }
 
@@ -150,6 +150,6 @@ button:focus-visible {
 
   .clientlist,
   .createform {
-    flex: 1; /* Each take half of the available space */
+    flex: 1; 
   }
 }

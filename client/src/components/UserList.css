@@ -4,47 +4,38 @@
 
 .clients-heading {
   text-align: center;
-  margin-bottom: 12px;
-  font-size: 20px;
+  margin-bottom: 24px;
+  font-size: 24px;
   color: #333;
-  white-space: pre-wrap; 
 }
-
-
 
 .clientlist-content {
   overflow-x: auto;
 }
 
 .clientlist-item {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.column {
-  flex: 1;
-  padding: 0 10px;
-  text-align: center;
-}
-
-.column-heading {
-  background-color: #f0f0f0;
-  color: #333;
-  padding: 10px;
-  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
 }
 
 .data-row {
-  border-bottom: 1px solid #ddd;
-  padding: 10px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  border-bottom: 1px solid black;
 }
 
-.data-row:last-child {
-  border-bottom: none;
+
+.column-heading {
+  font-weight: bold;
+  margin-right: 10px;
 }
 
+.actions-row {
+  display: flex;
+  justify-content: flex-end;
+}
 .actions-column button {
   background: none;
   border: none;
@@ -53,14 +44,21 @@
   font-size: inherit;
   margin-right: 5px;
   padding: 0;
+  align-self: flex-start; /* Align buttons to the top of the flex container */
 }
 
-.actions-column button:hover {
+
+.edit-button,
+.delete-button {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  margin-right: 10px;
+  /* margin-bottom: 0; */
+}
+
+.edit-button:hover,
+.delete-button:hover {
   text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .column {
-    flex: 1 0 100%;
-  }
 }

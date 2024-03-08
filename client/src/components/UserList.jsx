@@ -54,10 +54,12 @@ export default function UserList() {
         formData
       );
       setUsers(users.map((user) => (user._id === _id ? response.data : user)));
+      setSelectedUser(null); 
     } catch (error) {
       console.error("Error updating user:", error);
     }
   };
+
 
   return (
     <div className="user-list">
@@ -73,7 +75,7 @@ export default function UserList() {
             ))}
           </div>
           <div className="column">
-            <span className="column-heading">Last Name</span>
+            <span className="column-heading">LastName</span>
             {users.map((user) => (
               <div key={user._id} className="data-row">
                 {user.lastName}
@@ -89,7 +91,7 @@ export default function UserList() {
             ))}
           </div>
           <div className="column">
-            <span className="column-heading">Mobile No.</span>
+            <span className="column-heading">MobNo.</span>
             {users.map((user) => (
               <div key={user._id} className="data-row">
                 {user.mobNo}
@@ -105,12 +107,13 @@ export default function UserList() {
             ))}
           </div>
           <div className="column actions-column">
-            {/* <span className="column-heading">Actions</span> */}
+            <span className="column-heading">Actions</span>
             {users.map((user) => (
               <div key={user._id} className="data-row">
                 <button className="edit-button" onClick={() => editUser(user)}>
                   Edit
                 </button>
+                <div>| </div>
                 <button
                   className="delete-button"
                   onClick={() => deleteUser(user._id)}
@@ -124,7 +127,7 @@ export default function UserList() {
       </div>
       {selectedUser && (
         <div className="edit-form">
-          <h3>Edit User</h3>
+          <h3>Edit Client</h3>
           <input
             type="text"
             value={formData.name}
