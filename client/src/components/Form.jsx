@@ -9,7 +9,7 @@ export default function Form() {
   const [project, setProject] = useState("");
 
   async function handleSubmit(ev) {
-    ev.preventDefault(); // Prevent the default form submission behavior
+    ev.preventDefault(); 
     try {
       const response = await axios.post("/createClinent", {
         name,
